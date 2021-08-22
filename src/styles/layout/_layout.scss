@@ -1,0 +1,13 @@
+.layout {
+  background-color: $colorBaseBlue;
+  height: 100vh;
+  display: flex;
+  &_sidebar {
+    width: 20rem;
+  }
+  &_body {
+    border-radius: 20px 0 0 20px;
+    background-color: $colorBaseLightBlue;
+    width: -webkit-fill-available;
+  }
+}

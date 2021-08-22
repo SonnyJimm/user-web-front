@@ -1,0 +1,29 @@
+.page_signup {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  .container {
+    &_header {
+      a {
+        position: absolute;
+      }
+      display: inline-flex;
+      align-items: center;
+      text-align: -webkit-center;
+      padding-bottom: 3rem;
+      width: -webkit-fill-available;
+      .app_name {
+        color: $colorHeader;
+        display: flex;
+        width: -webkit-fill-available;
+        justify-content: center;
+      }
+    }
+
+    align-self: center;
+    background-color: $colorBaseWhite;
+    border-radius: 25px;
+    padding: 6rem;
+    min-height: 55rem;
+  }
+}

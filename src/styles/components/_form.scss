@@ -1,0 +1,76 @@
+.page_login,
+.page_signup {
+  &__form {
+    label::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: -1rem;
+      bottom: 0;
+      width: 20px;
+    }
+    .page_login__form--email,
+    .page_login__form--password,
+    .page_signup__form--email,
+    .page_signup__form--password,
+    .page_signup__form--username,
+    .page_signup__form--phone {
+      input {
+        outline: none;
+      }
+    }
+    label.page_login__form--email:before,
+    label.page_signup__form--username:before {
+      background: url("../img/user.svg") center / contain no-repeat;
+    }
+    label.page_signup__form--email:before {
+      background: url("../img/mail.svg") center / contain no-repeat;
+    }
+    label.page_signup__form--phone:before {
+      background: url("../img/phone.svg") center / contain no-repeat;
+    }
+    label.page_login__form--password:before,
+    label.page_signup__form--password:before {
+      background: url("../img/lock.svg") center / contain no-repeat;
+    }
+    display: grid;
+    label {
+      position: relative;
+    }
+
+    input {
+      border: 1px solid $colorBaseLightGray;
+      padding-left: 3.5rem;
+      height: 4rem;
+      border-radius: 8px;
+      width: 16vw;
+      margin-bottom: 1rem;
+    }
+    .page_login__form--links {
+      display: flex;
+      justify-content: space-between;
+    }
+    .page_login__form--forget-pass {
+      span {
+        color: $colorBaseGray;
+        padding-top: 0.3rem;
+        display: flex;
+      }
+    }
+    .page_login__form--remember {
+      span {
+        height: 2rem;
+        color: $colorBaseGray;
+        top: -0.5rem;
+        position: relative;
+        padding-left: 0.5rem;
+      }
+
+      input {
+        width: auto;
+        width: min-content;
+        height: 2rem;
+      }
+    }
+  }
+}

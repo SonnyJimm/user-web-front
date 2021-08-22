@@ -1,25 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import { connect } from "react-redux";
+import "./styles/themes.scss";
 
-function App() {
+//layout
+import Layout from "./components/layouts";
+
+//pages
+import Login from "./components/pages/Login";
+import SignUp from "./components/pages/SignUp";
+import Admin from "./components/pages/Admin";
+import Books from "./components/pages/Books";
+import Monitor from "./components/pages/Monitor";
+import PageNotFound from "./components/pages/PageNotFound";
+
+function App(props) {
+  let { isSignedIn } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        {isSignedIn ? null : <Route path='/' exact render={() => <Login />} />}
+        {isSignedIn ? null : (
+          <Route path='/signup' exact render={() => <SignUp />} />
+        )}
+        {isSignedIn ? (
+          <Route
+            path='/'
+            exact
+            render={() => (
+              <Layout>
+                <Books />
+              </Layout>
+            )}
+          />
+        ) : (
+          <Redirect to='/' />
+        )}
+        {isSignedIn ? (
+          <Route
+            path='/monitors'
+            exact
+            render={() => (
+              <Layout>
+                <Monitor />
+              </Layout>
+            )}
+          />
+        ) : null}
+        {isSignedIn ? (
+          <Route
+            path='/admin'
+            exact
+            render={() => (
+              <Layout>
+                <Admin />
+              </Layout>
+            )}
+          />
+        ) : null}
+        <Route path='*' component={() => <PageNotFound />} />
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
+export default connect(mapStateToProps, null)(App);

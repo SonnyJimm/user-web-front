@@ -1,0 +1,23 @@
+button {
+  height: 4rem;
+  border-radius: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.button {
+  &_blue {
+    color: $colorBaseWhite;
+    background-color: $colorBaseBlue;
+    border: 1px solid $colorBaseBlue;
+  }
+  &_white {
+    color: $colorBaseBlue;
+    background-color: $colorBaseWhite;
+    border: 1px solid $colorBaseBlue;
+  }
+}
+
+.button_login,
+.button_signup {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

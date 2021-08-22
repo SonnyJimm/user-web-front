@@ -1,0 +1,79 @@
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+  ----------------------------------------------------- */
+.sidebar {
+  .container {
+    padding-top: 1rem;
+    &_header {
+      text-align: -webkit-center;
+      .app_name {
+        margin-top: 0;
+        color: $colorBaseLightBlue;
+      }
+    }
+
+    align-self: center;
+  }
+  &_menu {
+    .page_active {
+      cursor: pointer;
+      background-color: $colorBaseLightBlue;
+      a,
+      button {
+        color: $colorHoverMenuText;
+      }
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      li:nth-child(1) {
+        border-top: 1px solid $colorMenuBorder;
+      }
+      li {
+        &:hover {
+          cursor: pointer;
+          background-color: $colorBaseLightBlue;
+          a,
+          button {
+            color: $colorHoverMenuText;
+          }
+        }
+        border-bottom: 1px solid $colorMenuBorder;
+        height: 4rem;
+        padding-left: 2rem;
+        font-size: 1.6rem;
+        button {
+          background: none;
+          border: none;
+          font-size: 1.6rem;
+          padding: 0;
+          width: 100%;
+        }
+        a,
+        button {
+          color: $colorBaseLightBlue;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+        a:link {
+          text-decoration: none;
+          color: $colorBaseLightBlue;
+        }
+
+        a:visited {
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: none;
+        }
+
+        a:active {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
