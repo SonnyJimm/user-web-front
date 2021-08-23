@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import ICON from "../../styles/img/back.svg";
+import { ErrorMessage } from "@hookform/error-message";
 
 //imports for users api call
 import { connect } from "react-redux";
 import { signupUser } from "../../actions";
 
 function SignUp(props) {
-  const { register, formState: errors, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+  } = useForm();
   const onSubmit = (data) => props.signupUser(data);
-  const password = register("password", { required: true, maxLength: 250 });
+  useEffect(() => {
+    console.log("error:", errors.user_name);
+  }, [errors]);
   return (
     <div className='page_signup'>
       <div className='container'>
@@ -25,9 +33,20 @@ function SignUp(props) {
           <label className='page_signup__form--username'>
             <input
               placeholder='Нэвтрэх нэр'
-              {...register("user_name", { required: true, maxLength: 250 })}
+              {...register("user_name", {
+                required: "This is required.",
+                maxLength: {
+                  value: 20,
+                  message: "This input exceed maxLength.",
+                },
+              })}
             />
           </label>
+          <ErrorMessage
+            errors={errors}
+            name='user_name'
+            render={({ message }) => <p>{message}</p>}
+          />
           <label className='page_signup__form--email'>
             <input
               placeholder='Цахим шуудан'
@@ -44,20 +63,22 @@ function SignUp(props) {
             <input
               type='password'
               placeholder='Нууц үг'
-              onChange={(e) => {
-                password.onChange(e);
-              }}
-              onBlur={password.onBlur}
-              ref={password.ref}
+              {...register("password", {
+                required: true,
+                maxLength: 250,
+              })}
             />
           </label>
-          {errors.password && <div>"hi"</div>}
           <label className='page_signup__form--password'>
             <input
-              name='password_re'
               type='password'
               placeholder='Нууц үг давтах'
-              {...register("password_re", { required: true, maxLength: 250 })}
+              {...register("password_re", {
+                required: true,
+                maxLength: 250,
+                validate: () =>
+                  getValues("password") === getValues("password_re"),
+              })}
             />
           </label>
           <button className='button_signup button_blue' type='submit'>

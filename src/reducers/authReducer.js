@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from "../actions/types";
+import { LOGIN, LOGOUT, SIGNUP } from "../actions/types";
 
 const INITIAL_STATE = {
   isSignedIn: localStorage.getItem("isSignedIn")
@@ -17,6 +17,8 @@ const reducerAuth = (state = INITIAL_STATE, action) => {
     // when logout action calls state isSignedIn changes to false
     case LOGOUT:
       return { ...state, isSignedIn: false, userToken: null };
+    case SIGNUP:
+      return { ...state, user: null };
     default:
       return state;
   }
