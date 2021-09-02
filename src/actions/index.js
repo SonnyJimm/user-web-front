@@ -7,6 +7,7 @@ export const loginUser = (formValues) => async (dispatch) => {
   const temp = { ...formValues };
   delete formValues.remember;
   console.log("temp", temp);
+  try{
   const response = await user.post("/auth/login", formValues);
   console.log("[login response]", response);
   if (response.status === 200 && response.data.body !== null) {
@@ -25,12 +26,17 @@ export const loginUser = (formValues) => async (dispatch) => {
     response.data.status_code === 400
   ) {
     toast.error(response.data.error_msg);
+  } 
+  }catch{
+    toast.error("Failed to send request")
   }
 };
 //to check if this user exists or not if yes then check authentications
 export const signupUser = (formValues) => async (dispatch) => {
   const temp = { ...formValues };
   console.log("signup form values sending", temp);
+  // preventing fail on sending request
+  try{
   const response = await user.post("/user", formValues);
   console.log("[sign up  response]", response);
   if (response.status === 200 && response.data.body !== null) {
@@ -49,6 +55,9 @@ export const signupUser = (formValues) => async (dispatch) => {
     response.data.status_code === 400
   ) {
     toast.error(response.data.error_msg);
+  } 
+  }catch{
+    toast.error("Failed to send request")
   }
 };
 //to check if this user exists or not if yes then check authentications

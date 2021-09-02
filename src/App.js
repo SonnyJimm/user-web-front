@@ -17,6 +17,7 @@ import Admin from "./components/pages/Admin";
 import Books from "./components/pages/Books";
 import Monitor from "./components/pages/Monitor";
 import PageNotFound from "./components/pages/PageNotFound";
+import ForgotPassword from "./components/pages/ForgotPassword";
 
 function App(props) {
   let { isSignedIn } = props;
@@ -24,9 +25,8 @@ function App(props) {
     <Router>
       <Switch>
         {isSignedIn ? null : <Route path='/' exact render={() => <Login />} />}
-        {isSignedIn ? null : (
-          <Route path='/signup' exact render={() => <SignUp />} />
-        )}
+        {isSignedIn ? null : <Route path='/signup' exact render={() => <SignUp />} />}
+        {isSignedIn ? null : <Route path='/forgot_password' exact render={() => <ForgotPassword/>}/>}
         {isSignedIn ? (
           <Route
             path='/'
